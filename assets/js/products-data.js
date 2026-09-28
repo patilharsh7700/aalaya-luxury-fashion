@@ -195,7 +195,7 @@ const AALAYA_PRODUCTS = [
     isTrending: true,
     images: [
       "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=1000&q=85",
-      "https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?auto=format&fit=crop&w=1000&q=85",
+      "/aalaya-luxury-fashion/assets/images/1_5dc7365c-c2f7-4e3e-b5ba-5ee1016daf4b.webp",
       "https://images.unsplash.com/photo-1546804784-896d0dca3805?auto=format&fit=crop&w=1000&q=85"
     ],
     description: "Designed for the modern maharani. Over 480 hours of meticulous hand-needle embroidery featuring architectural jali work, vintage floral vines, and semi-precious stone embellishments on rich silk velvet. Accompanied by two dupattas: a heavy velvet shoulder drape and a feather-light sheer tulle veil.",
