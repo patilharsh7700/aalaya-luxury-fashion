@@ -16,6 +16,8 @@
   <meta property="og:image" content="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1200&q=85">
   <meta property="og:type" content="website">
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
   {
@@ -359,6 +361,8 @@
       </div>
     </div>
   </section>
+
+  
 
   <!-- ================= DEDICATED SAREE COLLECTION SHOWCASE ================= -->
   <section class="split-editorial-section" id="sareeShowcase">
@@ -892,5 +896,35 @@
       AalayaStore.syncWishlistButtons();
     });
   </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const el = document.querySelector('.category-swiper');
+    if (!el || typeof Swiper === 'undefined') return;
+
+    new Swiper(el, {
+      loop: true,
+      speed: 900,
+      grabCursor: true,
+      keyboard: { enabled: true },
+      a11y: { enabled: true },
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      },
+      slidesPerView: 1.15,
+      spaceBetween: 20,
+      breakpoints: {
+        576:  { slidesPerView: 1.5, spaceBetween: 20 },
+        768:  { slidesPerView: 2.2, spaceBetween: 24 },
+        992:  { slidesPerView: 3.2, spaceBetween: 24 },
+        1200: { slidesPerView: 4,   spaceBetween: 24 },
+        1440: { slidesPerView: 4.5, spaceBetween: 24 },
+      },
+    });
+  });
+</script>
 </body>
 </html>
