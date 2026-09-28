@@ -11,6 +11,18 @@
   <link rel="stylesheet" href="assets/css/style.css">
 
   <style>
+
+    /* On pages without the top announcement bar,
+   anchor the header in normal flow instead of absolutely at top: 38px */
+body > .site-header {
+  position: relative;
+  top: 0;
+}
+
+/* Reduce the top margin on the content wrapper */
+.account-page-wrap {
+  margin: 3rem auto 6rem;
+}
     .account-page-wrap {
       max-width: var(--container-max);
       margin: 120px auto 6rem;
