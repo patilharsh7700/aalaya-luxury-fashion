@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frequently Asked Questions | AALAYA Luxury Fashion</title>
+  <meta name="description" content="Answers to sizing, Silk Mark certification, custom bridal alterations, domestic express delivery, and international shipping.">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <style>
+    .faq-wrap {
+      max-width: 880px;
+      margin: 120px auto 6rem;
+      padding: 0 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-container">
+      <button class="mobile-nav-toggle" onclick="toggleMobileMenu()"><i class="fa-solid fa-bars-staggered"></i></button>
+
+      <a href="index.html" class="brand-wrapper">
+        <span class="brand-logo">AALAYA</span>
+        <span class="brand-submark">HAUTE COUTURE & PRET</span>
+      </a>
+
+      <nav class="desktop-nav-menu">
+        <a href="new-arrivals.html" class="nav-link">New Arrivals</a>
+        <a href="sarees.html" class="nav-link">Sarees</a>
+        <a href="kurtis.html" class="nav-link">Kurtis</a>
+        <a href="lehengas.html" class="nav-link">Lehengas</a>
+        <a href="dresses.html" class="nav-link">Dresses</a>
+        <a href="wedding.html" class="nav-link">Wedding</a>
+        <a href="faq.html" class="nav-link active">FAQ</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="nav-action-btn btn-trigger-search"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <button class="nav-action-btn btn-trigger-cart">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="badge-count cart-badge-count" style="display:none;">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="faq-wrap">
+    <div class="text-center mb-5">
+      <span class="eyebrow" style="justify-content:center;">HELP & ASSISTANCE</span>
+      <h1 style="font-size:2.8rem; margin:0.4rem 0 1rem;">Frequently Asked Inquiries</h1>
+      <p style="color:#666;">Everything you need to know about our handlooms, bespoke tailoring, and deliveries.</p>
+    </div>
+
+    <!-- Accordion List -->
+    <div class="pdp-accordion-item">
+      <button class="pdp-accordion-trigger" onclick="togglePdpAccordion(this)">
+        <span>How do I know my saree or lehenga is authentic handloom?</span>
+        <i class="fa-solid fa-plus"></i>
+      </button>
+      <div class="pdp-accordion-content active">
+        Every AALAYA saree and bridal lehenga comes with an authentic Silk Mark India purity certification card. Our Banarasi and Kanjivaram creations carry authorized Geographical Indication (GI) serial tags signed by our master weavers.
+      </div>
+    </div>
+
+    <div class="pdp-accordion-item">
+      <button class="pdp-accordion-trigger" onclick="togglePdpAccordion(this)">
+        <span>Do you offer custom tailoring for blouses and suits?</span>
+        <i class="fa-solid fa-plus"></i>
+      </button>
+      <div class="pdp-accordion-content">
+        Yes. All sarees include 0.8m to 1m of unstitched blouse fabric. During checkout or via our private styling concierge, you can choose custom stitching according to your specific body measurements, preferred neckline, and padding preferences.
+      </div>
+    </div>
+
+    <div class="pdp-accordion-item">
+      <button class="pdp-accordion-trigger" onclick="togglePdpAccordion(this)">
+        <span>How long does domestic shipping take across India?</span>
+        <i class="fa-solid fa-plus"></i>
+      </button>
+      <div class="pdp-accordion-content">
+        Ready-to-ship pret pieces and in-stock sarees are dispatched within 24-48 hours and arrive within 3-4 business days via insured express air courier (Bluedart/Delhivery). Custom-tailored bridal lehengas require 4-6 weeks of hand-embroidery.
+      </div>
+    </div>
+
+    <div class="pdp-accordion-item">
+      <button class="pdp-accordion-trigger" onclick="togglePdpAccordion(this)">
+        <span>Do you ship internationally?</span>
+        <i class="fa-solid fa-plus"></i>
+      </button>
+      <div class="pdp-accordion-content">
+        Yes, we ship to over 65 countries including the United States, United Kingdom, Canada, UAE, Singapore, and Australia via DHL Express Priority. International shipping arrives within 5-7 business days.
+      </div>
+    </div>
+
+    <div class="pdp-accordion-item">
+      <button class="pdp-accordion-trigger" onclick="togglePdpAccordion(this)">
+        <span>What is your return and exchange policy?</span>
+        <i class="fa-solid fa-plus"></i>
+      </button>
+      <div class="pdp-accordion-content">
+        We offer a 7-day hassle-free doorstep exchange and return policy for all standard unstitched sarees, kurtis, dresses, and pret items in original unworn condition with tags intact. Custom-tailored bridal couture pieces are crafted bespoke and can be altered free of charge.
+      </div>
+    </div>
+
+    <div class="pdp-accordion-item">
+      <button class="pdp-accordion-trigger" onclick="togglePdpAccordion(this)">
+        <span>How should I store and care for pure zari silks?</span>
+        <i class="fa-solid fa-plus"></i>
+      </button>
+      <div class="pdp-accordion-content">
+        Pure silk drapes should be dry cleaned only. Always store your sarees wrapped in the complimentary pure cotton mulmul cloth provided in your Aalaya heirloom box. Avoid hanging on metal wire hangers; fold with zari facing inwards, and air out every 6 months.
+      </div>
+    </div>
+
+    <div style="margin-top:3.5rem; text-align:center; background:#faf7f2; padding:2rem; border:1px solid #e2d9cd;">
+      <h4 style="font-size:1.3rem; margin-bottom:0.5rem;">Have another inquiry?</h4>
+      <p style="font-size:0.9rem; color:#666; margin-bottom:1.25rem;">Our customer concierge team is available 7 days a week from 10:00 AM to 08:00 PM IST.</p>
+      <a href="contact.html" class="btn-luxury-primary"><span>Connect with Concierge</span></a>
+    </div>
+
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-top-grid">
+      <div class="footer-brand-bio">
+        <span class="brand-logo" style="color:#fff; text-align:left;">AALAYA</span>
+        <span class="brand-submark" style="color:var(--aalaya-champagne);">HAUTE COUTURE & PRET</span>
+      </div>
+    </div>
+    <div class="footer-bottom-bar">
+      <div>&copy; 2026 AALAYA HAUTE COUTURE. ALL RIGHTS RESERVED.</div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    function togglePdpAccordion(btn) {
+      const content = btn.nextElementSibling;
+      const icon = btn.querySelector('i');
+      const isOpen = content.classList.contains('active');
+
+      if (isOpen) {
+        content.classList.remove('active');
+        icon.className = 'fa-solid fa-plus';
+      } else {
+        content.classList.add('active');
+        icon.className = 'fa-solid fa-minus';
+      }
+    }
+  </script>
+</body>
+</html>

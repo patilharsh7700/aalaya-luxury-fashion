@@ -1,0 +1,241 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Archive Sale | AALAYA Luxury Fashion</title>
+  <meta name="description" content="Explore AALAYA's curated archive sale. Rare handloom sarees, bespoke lehengas, and pret sets at seasonal celebratory privileges.">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <style>
+    .sale-hero {
+      padding: 130px 2rem 50px;
+      background: #faf2f2;
+      text-align: center;
+      border-bottom: 1px solid rgba(201, 74, 74, 0.2);
+    }
+    .sale-countdown-box {
+      display: inline-flex;
+      gap: 16px;
+      margin-top: 1.5rem;
+      background: #fff;
+      padding: 12px 24px;
+      border: 1px solid rgba(201, 74, 74, 0.3);
+      box-shadow: 0 4px 15px rgba(201, 74, 74, 0.08);
+    }
+    .countdown-unit {
+      text-align: center;
+    }
+    .countdown-val {
+      font-family: var(--font-serif-display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #8B1E22;
+      display: block;
+      line-height: 1;
+    }
+    .countdown-lbl {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar" style="background:#5C1D24;">
+    <div class="top-bar-marquee">
+      <div class="marquee-content">
+        <span><i class="fa-solid fa-sparkles" style="color:var(--aalaya-champagne);"></i> THE ARCHIVE SALE: UP TO 20% PRIVILEGE ON SELECT HANDLOOM & PRET SILHOUETTES</span>
+        <span>• COMPLIMENTARY PAN-INDIA EXPRESS SHIPPING ON ALL ORDERS</span>
+      </div>
+      <div class="marquee-content" aria-hidden="true">
+        <span><i class="fa-solid fa-sparkles" style="color:var(--aalaya-champagne);"></i> THE ARCHIVE SALE: UP TO 20% PRIVILEGE ON SELECT HANDLOOM & PRET SILHOUETTES</span>
+        <span>• COMPLIMENTARY PAN-INDIA EXPRESS SHIPPING ON ALL ORDERS</span>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="header-container">
+      <button class="mobile-nav-toggle" onclick="toggleMobileMenu()"><i class="fa-solid fa-bars-staggered"></i></button>
+
+      <a href="index.html" class="brand-wrapper">
+        <span class="brand-logo">AALAYA</span>
+        <span class="brand-submark">HAUTE COUTURE & PRET</span>
+      </a>
+
+      <nav class="desktop-nav-menu">
+        <a href="new-arrivals.html" class="nav-link">New Arrivals</a>
+        <a href="sarees.html" class="nav-link">Sarees</a>
+        <a href="kurtis.html" class="nav-link">Kurtis</a>
+        <a href="lehengas.html" class="nav-link">Lehengas</a>
+        <a href="dresses.html" class="nav-link">Dresses</a>
+        <a href="ethnic-wear.html" class="nav-link">Ethnic</a>
+        <a href="western-wear.html" class="nav-link">Western</a>
+        <a href="wedding.html" class="nav-link">Wedding</a>
+        <a href="festive.html" class="nav-link">Festive</a>
+        <a href="sale.html" class="nav-link sale-tag active">Sale</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="nav-action-btn btn-trigger-search"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <a href="account.html" class="nav-action-btn"><i class="fa-regular fa-user"></i></a>
+        <a href="wishlist.html" class="nav-action-btn">
+          <i class="fa-regular fa-heart"></i>
+          <span class="badge-count wishlist-badge-count" style="display:none;">0</span>
+        </a>
+        <button class="nav-action-btn btn-trigger-cart">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="badge-count cart-badge-count" style="display:none;">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-nav-drawer" id="mobileNavDrawer">
+    <div class="mobile-nav-header">
+      <div class="brand-wrapper" style="text-align:left;">
+        <span class="brand-logo" style="font-size:1.6rem;">AALAYA</span>
+        <span class="brand-submark">HAUTE COUTURE</span>
+      </div>
+      <button class="mobile-nav-close" onclick="toggleMobileMenu()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="new-arrivals.html">New Arrivals <span>&rarr;</span></a></li>
+      <li><a href="sarees.html">Sarees <span>&rarr;</span></a></li>
+      <li><a href="kurtis.html">Kurtis <span>&rarr;</span></a></li>
+      <li><a href="lehengas.html">Lehengas <span>&rarr;</span></a></li>
+      <li><a href="dresses.html">Dresses <span>&rarr;</span></a></li>
+      <li><a href="ethnic-wear.html">Ethnic Wear <span>&rarr;</span></a></li>
+      <li><a href="western-wear.html">Western & Co-ords <span>&rarr;</span></a></li>
+      <li><a href="wedding.html">Wedding Collection <span>&rarr;</span></a></li>
+      <li><a href="festive.html">Festive Wear <span>&rarr;</span></a></li>
+      <li><a href="sale.html" style="color:#C94A4A;">Archive Sale <span>&rarr;</span></a></li>
+    </ul>
+  </div>
+
+  <div class="sale-hero">
+    <span class="eyebrow" style="color:#8B1E22;">SEASONAL CURATION</span>
+    <h1 style="margin:0.5rem 0 0.8rem; color:#4A1521;">The Archive Sale</h1>
+    <p style="max-width:680px; margin:0 auto; color:#666;">
+      Rare archival weaves and past season runway creations presented with celebratory privileges for our patrons. Limited stock remaining.
+    </p>
+
+    <!-- Countdown Timer -->
+    <div class="sale-countdown-box">
+      <div class="countdown-unit">
+        <span class="countdown-val">02</span>
+        <span class="countdown-lbl">Days</span>
+      </div>
+      <div style="font-size:1.4rem; color:#8B1E22; align-self:center;">:</div>
+      <div class="countdown-unit">
+        <span class="countdown-val">14</span>
+        <span class="countdown-lbl">Hours</span>
+      </div>
+      <div style="font-size:1.4rem; color:#8B1E22; align-self:center;">:</div>
+      <div class="countdown-unit">
+        <span class="countdown-val">38</span>
+        <span class="countdown-lbl">Mins</span>
+      </div>
+      <div style="font-size:1.4rem; color:#8B1E22; align-self:center;">:</div>
+      <div class="countdown-unit">
+        <span class="countdown-val" id="countdownSecs">45</span>
+        <span class="countdown-lbl">Secs</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid" style="max-width:var(--container-max); padding: 5rem 2rem 7rem;">
+    <div class="product-grid-container" id="saleCatalogGrid"></div>
+  </div>
+
+  <!-- Cart Drawer & Search Modal -->
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay" onclick="AalayaStore.closeCartDrawer()"></div>
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer-header">
+      <h3>Your Shopping Bag</h3>
+      <button class="btn-close-cart" onclick="AalayaStore.closeCartDrawer()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="cart-items-scroll-area" id="cartItemsList"></div>
+    <div class="cart-drawer-footer">
+      <div class="cart-summary-line"><span>Subtotal</span><span id="cartSubtotalAmount">₹0</span></div>
+      <a href="checkout.html" class="btn-luxury-primary" style="width:100%; margin-top:1rem;">Proceed to Checkout</a>
+    </div>
+  </aside>
+
+  <div class="search-overlay-modal" id="searchOverlayModal">
+    <button class="search-close-btn" onclick="closeSearchOverlay()"><i class="fa-solid fa-xmark"></i></button>
+    <div class="search-container-inner">
+      <span class="eyebrow">COUTURE SEARCH</span>
+      <div class="search-input-wrapper">
+        <input type="text" class="search-field-input" id="searchFieldInput" placeholder="Search creations...">
+      </div>
+      <div class="search-live-results" id="searchLiveResults"></div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-top-grid">
+      <div class="footer-brand-bio">
+        <span class="brand-logo" style="color:#fff; text-align:left;">AALAYA</span>
+        <span class="brand-submark" style="color:var(--aalaya-champagne);">HAUTE COUTURE & PRET</span>
+        <p>A tribute to centuries of Indian textile excellence, sculpted for the modern world.</p>
+      </div>
+      <div>
+        <h5 class="footer-col-title">Shop</h5>
+        <ul class="footer-links-list">
+          <li><a href="sale.html">Archive Sale</a></li>
+          <li><a href="sarees.html">Sarees</a></li>
+          <li><a href="kurtis.html">Kurtis</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="footer-col-title">Care</h5>
+        <ul class="footer-links-list">
+          <li><a href="contact.html">Concierge</a></li>
+          <li><a href="order-tracking.html">Track Order</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="footer-col-title">Atelier</h5>
+        <ul class="footer-links-list">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="journal.html">Journal</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom-bar">
+      <div>&copy; 2026 AALAYA HAUTE COUTURE. ALL RIGHTS RESERVED.</div>
+      <div>Archival Indian Couture.</div>
+    </div>
+  </footer>
+
+  <script src="assets/js/products-data.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Products with discount
+      const items = AALAYA_PRODUCTS.filter(p => p.discount && p.discount !== '0%');
+      const grid = document.getElementById('saleCatalogGrid');
+      if (grid) {
+        grid.innerHTML = items.map(createProductCardHTML).join('');
+        AalayaStore.syncWishlistButtons();
+      }
+
+      // Live second ticker
+      let sec = 45;
+      setInterval(() => {
+        sec = sec > 0 ? sec - 1 : 59;
+        const el = document.getElementById('countdownSecs');
+        if (el) el.textContent = sec < 10 ? '0' + sec : sec;
+      }, 1000);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,304 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Your Shipment | AALAYA Luxury Fashion</title>
+  <meta name="description" content="Track your bespoke AALAYA handloom delivery in real-time. Priority insured Pan-India shipping with white-glove courier status.">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <style>
+    .tracking-page-wrap {
+      max-width: 900px;
+      margin: 120px auto 6rem;
+      padding: 0 2rem;
+    }
+    .tracking-search-box {
+      background: #fff;
+      border: 1px solid var(--aalaya-border);
+      padding: 2.5rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      box-shadow: var(--shadow-subtle);
+    }
+    .tracking-timeline-card {
+      background: #fff;
+      border: 1px solid var(--aalaya-border);
+      padding: 3rem;
+      box-shadow: var(--shadow-subtle);
+    }
+    
+    /* Stages Progress */
+    .tracking-steps {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      margin: 3rem 0;
+    }
+    .tracking-steps::before {
+      content: "";
+      position: absolute;
+      top: 24px;
+      left: 30px;
+      right: 30px;
+      height: 3px;
+      background: #e0d8ce;
+      z-index: 1;
+    }
+    .tracking-steps-fill {
+      position: absolute;
+      top: 24px;
+      left: 30px;
+      width: 60%;
+      height: 3px;
+      background: var(--aalaya-gold);
+      z-index: 2;
+      transition: width 0.8s ease;
+    }
+    .step-item {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      width: 100px;
+    }
+    .step-bubble {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #fff;
+      border: 3px solid #e0d8ce;
+      margin: 0 auto 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: #999;
+      transition: all 0.3s;
+    }
+    .step-item.completed .step-bubble {
+      background: var(--aalaya-gold);
+      border-color: var(--aalaya-gold);
+      color: #fff;
+    }
+    .step-item.active .step-bubble {
+      background: var(--aalaya-charcoal);
+      border-color: var(--aalaya-charcoal);
+      color: #fff;
+      box-shadow: 0 0 0 6px rgba(23,23,23,0.12);
+    }
+    .step-title {
+      font-family: var(--font-sans);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--aalaya-charcoal);
+      display: block;
+      margin-bottom: 2px;
+    }
+    .step-time {
+      font-size: 0.72rem;
+      color: #888;
+    }
+
+    @media (max-width: 768px) {
+      .tracking-steps {
+        flex-direction: column;
+        gap: 2rem;
+        margin-left: 2rem;
+      }
+      .tracking-steps::before {
+        top: 20px;
+        bottom: 20px;
+        left: 24px;
+        width: 3px;
+        height: auto;
+      }
+      .tracking-steps-fill {
+        top: 20px;
+        left: 24px;
+        width: 3px;
+        height: 60%;
+      }
+      .step-item {
+        display: flex;
+        align-items: center;
+        text-align: left;
+        width: auto;
+        gap: 1.25rem;
+      }
+      .step-bubble {
+        margin: 0;
+        flex-shrink: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top bar -->
+  <div class="top-bar">
+    <div class="top-bar-marquee">
+      <div class="marquee-content">
+        <span><i class="fa-solid fa-sparkles" style="color:var(--aalaya-gold);"></i> REAL-TIME SHIPMENT TRACKING & WHITE-GLOVE COURIER DISPATCH</span>
+        <span>• COMPLIMENTARY INSURED PAN-INDIA DELIVERY</span>
+      </div>
+      <div class="marquee-content" aria-hidden="true">
+        <span><i class="fa-solid fa-sparkles" style="color:var(--aalaya-gold);"></i> REAL-TIME SHIPMENT TRACKING & WHITE-GLOVE COURIER DISPATCH</span>
+        <span>• COMPLIMENTARY INSURED PAN-INDIA DELIVERY</span>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="header-container">
+      <button class="mobile-nav-toggle" onclick="toggleMobileMenu()"><i class="fa-solid fa-bars-staggered"></i></button>
+
+      <a href="index.html" class="brand-wrapper">
+        <span class="brand-logo">AALAYA</span>
+        <span class="brand-submark">HAUTE COUTURE & PRET</span>
+      </a>
+
+      <nav class="desktop-nav-menu">
+        <a href="new-arrivals.html" class="nav-link">New Arrivals</a>
+        <a href="sarees.html" class="nav-link">Sarees</a>
+        <a href="kurtis.html" class="nav-link">Kurtis</a>
+        <a href="lehengas.html" class="nav-link">Lehengas</a>
+        <a href="dresses.html" class="nav-link">Dresses</a>
+        <a href="ethnic-wear.html" class="nav-link">Ethnic</a>
+        <a href="western-wear.html" class="nav-link">Western</a>
+        <a href="wedding.html" class="nav-link">Wedding</a>
+        <a href="sale.html" class="nav-link sale-tag">Sale</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="nav-action-btn btn-trigger-search"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <a href="account.html" class="nav-action-btn"><i class="fa-regular fa-user"></i></a>
+        <button class="nav-action-btn btn-trigger-cart">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="badge-count cart-badge-count" style="display:none;">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="tracking-page-wrap">
+    <div style="text-align:center; margin-bottom:2.5rem;">
+      <span class="eyebrow">SHIPMENT CONCIERGE</span>
+      <h1 style="font-size:2.4rem; margin:0.4rem 0;">Track Your Heirloom Delivery</h1>
+      <p style="color:#666;">Enter your Aalaya Order ID or registered mobile number to view live transit milestones.</p>
+    </div>
+
+    <!-- Search Box -->
+    <div class="tracking-search-box">
+      <div style="display:flex; max-width:540px; margin:0 auto; gap:10px;">
+        <input type="text" id="trackInput" class="form-input-custom" placeholder="e.g. AAL-2026-89412 or 9811234567" value="AAL-2026-89412">
+        <button class="btn-luxury-primary" onclick="simulateTrackingLookup()">
+          <span>Track</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Live Status Card -->
+    <div class="tracking-timeline-card">
+      <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 pb-3" style="border-bottom:1px solid #eee;">
+        <div>
+          <span style="font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; color:#888;">Order Reference:</span>
+          <h4 style="margin:2px 0 0;" id="displayOrderRef">AAL-2026-89412</h4>
+        </div>
+        <div style="text-align:right;">
+          <span style="font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; color:#888;">Courier Partner:</span>
+          <div style="font-weight:700; font-size:0.9rem; color:var(--aalaya-charcoal);">Bluedart Luxe Air (AWB: 894120938)</div>
+        </div>
+      </div>
+
+      <!-- Animated Progress Tracker -->
+      <div class="tracking-steps">
+        <div class="tracking-steps-fill"></div>
+
+        <div class="step-item completed">
+          <div class="step-bubble"><i class="fa-solid fa-check"></i></div>
+          <span class="step-title">Placed</span>
+          <span class="step-time">Sep 28, 10:15 AM</span>
+        </div>
+
+        <div class="step-item completed">
+          <div class="step-bubble"><i class="fa-solid fa-gem"></i></div>
+          <span class="step-title">Verified</span>
+          <span class="step-time">Sep 28, 02:40 PM</span>
+        </div>
+
+        <div class="step-item completed">
+          <div class="step-bubble"><i class="fa-solid fa-box-open"></i></div>
+          <span class="step-title">Packed</span>
+          <span class="step-time">Sep 29, 09:30 AM</span>
+        </div>
+
+        <div class="step-item active">
+          <div class="step-bubble"><i class="fa-solid fa-plane"></i></div>
+          <span class="step-title">In Transit</span>
+          <span class="step-time">Sep 30 (En Route)</span>
+        </div>
+
+        <div class="step-item">
+          <div class="step-bubble"><i class="fa-solid fa-house-chimney"></i></div>
+          <span class="step-title">Delivered</span>
+          <span class="step-time">Oct 02 (Estimated)</span>
+        </div>
+      </div>
+
+      <!-- Detail Box -->
+      <div style="background:#faf7f2; border:1px solid #e0d8ce; padding:1.5rem; display:grid; grid-template-columns: 1fr 1fr; gap:1.5rem;">
+        <div>
+          <strong style="font-size:0.85rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--aalaya-charcoal);">Delivery Destination:</strong>
+          <p style="font-size:0.9rem; color:#555; margin:4px 0 0;">Villa 14, Amrita Shergill Marg, Chanakyapuri, New Delhi - 110003</p>
+        </div>
+        <div>
+          <strong style="font-size:0.85rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--aalaya-charcoal);">Latest Transit Scan:</strong>
+          <p style="font-size:0.9rem; color:#555; margin:4px 0 0;">Departed Delhi Indira Gandhi International Cargo Hub • On Schedule</p>
+        </div>
+      </div>
+
+      <div style="margin-top:2rem; text-align:center;">
+        <span style="font-size:0.82rem; color:#777;">Need concierge assistance regarding your delivery?</span>
+        <a href="contact.html" style="font-size:0.82rem; color:var(--aalaya-gold); font-weight:700; text-decoration:underline; margin-left:6px;">Connect with Dedicated Stylist &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-top-grid">
+      <div class="footer-brand-bio">
+        <span class="brand-logo" style="color:#fff; text-align:left;">AALAYA</span>
+        <span class="brand-submark" style="color:var(--aalaya-champagne);">HAUTE COUTURE & PRET</span>
+      </div>
+    </div>
+    <div class="footer-bottom-bar">
+      <div>&copy; 2026 AALAYA HAUTE COUTURE. ALL RIGHTS RESERVED.</div>
+    </div>
+  </footer>
+
+  <script src="assets/js/products-data.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    function simulateTrackingLookup() {
+      const val = document.getElementById('trackInput').value.trim();
+      if (!val) return;
+      document.getElementById('displayOrderRef').textContent = val.toUpperCase();
+      showAalayaToast(`Fetched latest logistics telemetry for order ${val}.`);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const order = params.get('order');
+      if (order) {
+        document.getElementById('trackInput').value = order;
+        document.getElementById('displayOrderRef').textContent = order;
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,539 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secure Checkout | AALAYA Luxury Fashion</title>
+  <meta name="description" content="Complete your purchase with AALAYA's encrypted multi-step luxury checkout. Pan-India complimentary express courier and multiple secure payment options.">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <style>
+    .checkout-wrap {
+      max-width: var(--container-max);
+      margin: 110px auto 6rem;
+      padding: 0 2rem;
+    }
+    .checkout-steps-bar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 3rem;
+      margin-bottom: 3.5rem;
+      position: relative;
+    }
+    .step-node {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #999;
+    }
+    .step-node.active {
+      color: var(--aalaya-charcoal);
+    }
+    .step-node.completed {
+      color: var(--aalaya-gold);
+    }
+    .step-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-sans);
+      font-weight: 700;
+    }
+    .step-node.active .step-num {
+      background: var(--aalaya-charcoal);
+      color: #fff;
+      border-color: var(--aalaya-charcoal);
+    }
+    .step-node.completed .step-num {
+      background: var(--aalaya-gold);
+      color: #fff;
+      border-color: var(--aalaya-gold);
+    }
+
+    .checkout-layout-grid {
+      display: grid;
+      grid-template-columns: 1.45fr 1fr;
+      gap: 4rem;
+      align-items: flex-start;
+    }
+
+    .checkout-form-card {
+      background: #fff;
+      border: 1px solid var(--aalaya-border);
+      padding: 2.5rem;
+    }
+
+    .checkout-step-panel {
+      display: none;
+    }
+    .checkout-step-panel.active {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .form-group-custom {
+      margin-bottom: 1.25rem;
+    }
+    .form-label-custom {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--aalaya-charcoal);
+      margin-bottom: 6px;
+      display: block;
+    }
+    .form-input-custom {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #ccc;
+      font-size: 0.92rem;
+      outline: none;
+      background: #fff;
+      transition: border-color 0.2s;
+    }
+    .form-input-custom:focus {
+      border-color: var(--aalaya-charcoal);
+    }
+
+    .payment-tab-selector {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 1.5rem;
+    }
+    .pay-tab-btn {
+      padding: 12px 8px;
+      text-align: center;
+      border: 1px solid #ddd;
+      background: #faf7f2;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .pay-tab-btn.active {
+      background: var(--aalaya-charcoal);
+      color: #fff;
+      border-color: var(--aalaya-charcoal);
+    }
+
+    .order-summary-sidebar {
+      background: var(--aalaya-ivory-soft);
+      border: 1px solid var(--aalaya-border);
+      padding: 2rem;
+      position: sticky;
+      top: 100px;
+    }
+
+    @media (max-width: 991px) {
+      .checkout-layout-grid {
+        grid-template-columns: 1fr;
+      }
+      .checkout-steps-bar {
+        gap: 1.25rem;
+      }
+      .step-node span:not(.step-num) {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Minimal Checkout Header -->
+  <header class="site-header">
+    <div class="header-container" style="justify-content:center;">
+      <a href="index.html" class="brand-wrapper">
+        <span class="brand-logo">AALAYA</span>
+        <span class="brand-submark">HAUTE COUTURE & PRET</span>
+      </a>
+    </div>
+  </header>
+
+  <div class="checkout-wrap">
+    
+    <!-- Step Progression Tracker -->
+    <div class="checkout-steps-bar">
+      <div class="step-node active" id="stepNode1">
+        <span class="step-num">1</span>
+        <span>Address</span>
+      </div>
+      <div class="step-node" id="stepNode2">
+        <span class="step-num">2</span>
+        <span>Delivery</span>
+      </div>
+      <div class="step-node" id="stepNode3">
+        <span class="step-num">3</span>
+        <span>Payment</span>
+      </div>
+      <div class="step-node" id="stepNode4">
+        <span class="step-num">4</span>
+        <span>Confirmation</span>
+      </div>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="checkout-layout-grid" id="checkoutGridArea">
+      
+      <!-- Left: Step Panels -->
+      <div class="checkout-form-card">
+        
+        <!-- STEP 1: Address Details -->
+        <div class="checkout-step-panel active" id="panelAddress">
+          <span class="eyebrow">STEP 1 OF 3</span>
+          <h2 style="font-size: 1.8rem; margin: 0.4rem 0 1.5rem;">Shipping Address</h2>
+
+          <div class="row">
+            <div class="col-md-6 form-group-custom">
+              <label class="form-label-custom">Full Name *</label>
+              <input type="text" class="form-input-custom" id="addrName" value="Radhika Singhania" required>
+            </div>
+            <div class="col-md-6 form-group-custom">
+              <label class="form-label-custom">Mobile / WhatsApp *</label>
+              <input type="tel" class="form-input-custom" id="addrPhone" value="+91 98112 34567" required>
+            </div>
+          </div>
+
+          <div class="form-group-custom">
+            <label class="form-label-custom">Email Address (For Invoicing & Tracking) *</label>
+            <input type="email" class="form-input-custom" id="addrEmail" value="radhika.singhania@heritage.in" required>
+          </div>
+
+          <div class="form-group-custom">
+            <label class="form-label-custom">Street Address & Landmark *</label>
+            <input type="text" class="form-input-custom" id="addrStreet" value="Villa 14, Amrita Shergill Marg, Chanakyapuri" required>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 form-group-custom">
+              <label class="form-label-custom">City *</label>
+              <input type="text" class="form-input-custom" id="addrCity" value="New Delhi" required>
+            </div>
+            <div class="col-md-4 form-group-custom">
+              <label class="form-label-custom">State *</label>
+              <input type="text" class="form-input-custom" id="addrState" value="Delhi" required>
+            </div>
+            <div class="col-md-4 form-group-custom">
+              <label class="form-label-custom">Pincode *</label>
+              <input type="text" class="form-input-custom" id="addrPin" value="110003" required>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center mt-4 pt-3" style="border-top:1px solid #eee;">
+            <a href="cart.html" class="btn-text-link">&larr; Return to Bag</a>
+            <button class="btn-luxury-primary" onclick="goToStep(2)">
+              <span>Proceed to Delivery</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 2: Delivery Method -->
+        <div class="checkout-step-panel" id="panelDelivery">
+          <span class="eyebrow">STEP 2 OF 3</span>
+          <h2 style="font-size: 1.8rem; margin: 0.4rem 0 1.5rem;">Select Shipping Preference</h2>
+
+          <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:2rem;">
+            <label style="border:1px solid var(--aalaya-charcoal); padding:1.25rem; display:flex; align-items:flex-start; gap:12px; cursor:pointer; background:var(--aalaya-ivory-soft);">
+              <input type="radio" name="shippingMethod" value="express" checked style="accent-color:var(--aalaya-charcoal); margin-top:4px;">
+              <div>
+                <strong style="font-size:0.95rem; display:block;">Complimentary Insured Express Courier</strong>
+                <span style="font-size:0.82rem; color:#666;">Estimated Arrival: 3-4 Business Days with tamper-proof security seals and tracking.</span>
+              </div>
+              <span style="margin-left:auto; font-weight:700; color:#2a7538; font-size:0.85rem;">FREE</span>
+            </label>
+
+            <label style="border:1px solid #ddd; padding:1.25rem; display:flex; align-items:flex-start; gap:12px; cursor:pointer; background:#fff;">
+              <input type="radio" name="shippingMethod" value="whiteglove" style="accent-color:var(--aalaya-charcoal); margin-top:4px;">
+              <div>
+                <strong style="font-size:0.95rem; display:block;">White-Glove Private Courier (Delhi-NCR & Mumbai)</strong>
+                <span style="font-size:0.82rem; color:#666;">Delivered on hangers in breathable garment bag by uniformed Aalaya concierge within 24 hours.</span>
+              </div>
+              <span style="margin-left:auto; font-weight:700; color:var(--aalaya-charcoal); font-size:0.85rem;">₹1,500</span>
+            </label>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center mt-4 pt-3" style="border-top:1px solid #eee;">
+            <button class="btn-text-link" onclick="goToStep(1)">&larr; Back to Address</button>
+            <button class="btn-luxury-primary" onclick="goToStep(3)">
+              <span>Proceed to Payment</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 3: Payment Options -->
+        <div class="checkout-step-panel" id="panelPayment">
+          <span class="eyebrow">STEP 3 OF 3</span>
+          <h2 style="font-size: 1.8rem; margin: 0.4rem 0 1.5rem;">Secure Payment Method</h2>
+
+          <!-- Payment Tabs -->
+          <div class="payment-tab-selector">
+            <button class="pay-tab-btn active" onclick="switchPayTab('upi', this)"><i class="fa-solid fa-mobile-screen"></i> UPI</button>
+            <button class="pay-tab-btn" onclick="switchPayTab('card', this)"><i class="fa-regular fa-credit-card"></i> Cards</button>
+            <button class="pay-tab-btn" onclick="switchPayTab('net', this)"><i class="fa-solid fa-building-columns"></i> NetBanking</button>
+            <button class="pay-tab-btn" onclick="switchPayTab('cod', this)"><i class="fa-solid fa-money-bill"></i> COD</button>
+          </div>
+
+          <!-- UPI Section -->
+          <div id="paySectionUPI">
+            <div style="background:#faf7f2; border:1px solid #e0d8ce; padding:1.5rem; text-align:center; margin-bottom:1.5rem;">
+              <span style="font-size:0.8rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--aalaya-gold);">Scan to Pay with Any UPI App</span>
+              <div style="width:140px; height:140px; background:#fff; margin:1rem auto; display:flex; align-items:center; justify-content:center; border:1px solid #ccc; font-size:4rem; color:var(--aalaya-charcoal);">
+                <i class="fa-solid fa-qrcode"></i>
+              </div>
+              <p style="font-size:0.85rem; color:#666; margin:0;">Google Pay, PhonePe, Paytm, BHIM</p>
+            </div>
+            
+            <div class="form-group-custom">
+              <label class="form-label-custom">Or Enter Your VPA / UPI ID</label>
+              <input type="text" class="form-input-custom" placeholder="username@okhdfcbank" value="radhika@okhdfcbank">
+            </div>
+          </div>
+
+          <!-- Card Section -->
+          <div id="paySectionCard" style="display:none;">
+            <div class="form-group-custom">
+              <label class="form-label-custom">Card Number</label>
+              <input type="text" class="form-input-custom" placeholder="•••• •••• •••• ••••" value="4532 8912 3456 7890">
+            </div>
+            <div class="row">
+              <div class="col-md-6 form-group-custom">
+                <label class="form-label-custom">Expiry Date</label>
+                <input type="text" class="form-input-custom" placeholder="MM / YY" value="08/29">
+              </div>
+              <div class="col-md-6 form-group-custom">
+                <label class="form-label-custom">CVV</label>
+                <input type="password" class="form-input-custom" placeholder="•••" maxlength="4" value="842">
+              </div>
+            </div>
+            <div class="form-group-custom">
+              <label class="form-label-custom">Name on Card</label>
+              <input type="text" class="form-input-custom" value="RADHIKA SINGHANIA">
+            </div>
+          </div>
+
+          <!-- Net Banking -->
+          <div id="paySectionNet" style="display:none;">
+            <label class="form-label-custom">Select Your Bank</label>
+            <select class="form-input-custom">
+              <option>HDFC Bank</option>
+              <option>ICICI Bank</option>
+              <option>State Bank of India</option>
+              <option>Axis Bank</option>
+              <option>Kotak Mahindra Bank</option>
+            </select>
+          </div>
+
+          <!-- Cash On Delivery -->
+          <div id="paySectionCOD" style="display:none;">
+            <div style="background:#faf7f2; border:1px solid #e0d8ce; padding:1.5rem;">
+              <p style="font-size:0.88rem; color:#555; margin:0;">
+                <i class="fa-solid fa-circle-info" style="color:var(--aalaya-gold);"></i> Cash on delivery is available for orders under ₹50,000 across 18,000+ Indian pincodes. A mobile verification OTP will be requested upon arrival.
+              </p>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center mt-4 pt-3" style="border-top:1px solid #eee;">
+            <button class="btn-text-link" onclick="goToStep(2)">&larr; Back to Delivery</button>
+            <button class="btn-luxury-primary btn-luxury-gold" onclick="placeOrder()">
+              <span>Pay & Confirm Order</span>
+              <i class="fa-solid fa-lock"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 4: ORDER CONFIRMATION RECEIPT -->
+        <div class="checkout-step-panel" id="panelConfirmation">
+          <div style="text-align:center; padding: 2rem 0;">
+            <div style="width:70px; height:70px; border-radius:50%; background:var(--aalaya-gold); color:#fff; font-size:2rem; display:flex; align-items:center; justify-content:center; margin:0 auto 1.5rem; box-shadow:0 8px 25px rgba(184,148,85,0.4);">
+              <i class="fa-solid fa-check"></i>
+            </div>
+            <span class="eyebrow" style="color:var(--aalaya-gold); justify-content:center;">CONGRATULATIONS</span>
+            <h1 style="font-size:2.4rem; margin:0.5rem 0;">Your Order Is Confirmed</h1>
+            <p style="font-size:1rem; color:#666; max-width:540px; margin:0 auto 2rem;">
+              Thank you for trusting AALAYA with your sartorial moments. Your bespoke heirloom is now transitioning to our master artisan packing salon.
+            </p>
+
+            <div style="background:#faf7f2; border:1px solid #e2d9cd; padding:1.5rem; text-align:left; max-width:520px; margin:0 auto 2.5rem;">
+              <div class="d-flex justify-content-between mb-2" style="font-size:0.85rem;">
+                <span style="color:#777;">Order Reference:</span>
+                <strong id="confirmOrderId">AAL-2026-89412</strong>
+              </div>
+              <div class="d-flex justify-content-between mb-2" style="font-size:0.85rem;">
+                <span style="color:#777;">Estimated Delivery Date:</span>
+                <strong>October 2, 2026 (Insured Courier)</strong>
+              </div>
+              <div class="d-flex justify-content-between" style="font-size:0.85rem;">
+                <span style="color:#777;">Delivery Address:</span>
+                <span id="confirmAddrText" style="text-align:right;">New Delhi, Delhi - 110003</span>
+              </div>
+            </div>
+
+            <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+              <a href="order-tracking.html?order=AAL-2026-89412" class="btn-luxury-primary">
+                <span>Track Live Order</span>
+                <i class="fa-solid fa-location-arrow"></i>
+              </a>
+              <button class="btn-luxury-outline" onclick="window.print()">
+                <i class="fa-solid fa-print"></i> Print Invoice
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right: Order Summary Sidebar -->
+      <div class="order-summary-sidebar">
+        <h4 style="font-family:var(--font-sans); font-size:0.88rem; letter-spacing:0.15em; text-transform:uppercase; font-weight:700; margin-bottom:1.5rem; border-bottom:1px solid var(--aalaya-border); padding-bottom:0.75rem;">
+          Bag Summary (<span id="checkoutItemCount">0</span> Items)
+        </h4>
+
+        <div id="checkoutItemsList" style="max-height:300px; overflow-y:auto; display:flex; flex-direction:column; gap:1rem; margin-bottom:1.5rem;"></div>
+
+        <div class="d-flex justify-content-between mb-2" style="font-size:0.88rem; color:#555;">
+          <span>Subtotal</span>
+          <span id="checkoutSubtotal">₹0</span>
+        </div>
+        <div class="d-flex justify-content-between mb-2" style="font-size:0.88rem; color:#555;">
+          <span>Pan-India Courier</span>
+          <span style="color:#2a7538; font-weight:600;">Complimentary</span>
+        </div>
+        <div class="d-flex justify-content-between pt-3" style="border-top:1px solid var(--aalaya-border); font-size:1.25rem; font-weight:700; color:var(--aalaya-charcoal);">
+          <span>Total</span>
+          <span id="checkoutTotal">₹0</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="assets/js/products-data.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    function renderCheckoutSummary() {
+      const cart = AalayaStore.cart;
+      const countEl = document.getElementById('checkoutItemCount');
+      const listEl = document.getElementById('checkoutItemsList');
+      const subtotalEl = document.getElementById('checkoutSubtotal');
+      const totalEl = document.getElementById('checkoutTotal');
+
+      if (!cart || cart.length === 0) {
+        // If empty, auto-add a default item so user can test checkout
+        AalayaStore.addToCart('aalaya-saree-01');
+      }
+
+      const totalItems = AalayaStore.cart.reduce((s, i) => s + i.quantity, 0);
+      const subtotal = AalayaStore.getCartSubtotal();
+
+      if (countEl) countEl.textContent = totalItems;
+      if (subtotalEl) subtotalEl.textContent = `₹${subtotal.toLocaleString('en-IN')}`;
+      if (totalEl) totalEl.textContent = `₹${subtotal.toLocaleString('en-IN')}`;
+
+      if (listEl) {
+        listEl.innerHTML = AalayaStore.cart.map(item => `
+          <div style="display:flex; gap:12px; align-items:center;">
+            <img src="${item.image}" alt="${item.name}" style="width:50px; height:65px; object-fit:cover;">
+            <div style="flex:1;">
+              <h6 style="font-size:0.85rem; font-family:var(--font-serif-display); margin:0 0 2px;">${item.name}</h6>
+              <div style="font-size:0.75rem; color:#777;">Size: ${item.size} • Qty: ${item.quantity}</div>
+            </div>
+            <span style="font-size:0.85rem; font-weight:700;">₹${(item.price * item.quantity).toLocaleString('en-IN')}</span>
+          </div>
+        `).join('');
+      }
+    }
+
+    function goToStep(stepNum) {
+      document.querySelectorAll('.checkout-step-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.step-node').forEach((n, idx) => {
+        n.classList.remove('active');
+        if (idx < stepNum - 1) n.classList.add('completed');
+      });
+
+      if (stepNum === 1) {
+        document.getElementById('panelAddress').classList.add('active');
+        document.getElementById('stepNode1').classList.add('active');
+      } else if (stepNum === 2) {
+        document.getElementById('panelDelivery').classList.add('active');
+        document.getElementById('stepNode2').classList.add('active');
+      } else if (stepNum === 3) {
+        document.getElementById('panelPayment').classList.add('active');
+        document.getElementById('stepNode3').classList.add('active');
+      }
+    }
+
+    function switchPayTab(tab, btn) {
+      document.querySelectorAll('.pay-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      document.getElementById('paySectionUPI').style.display = tab === 'upi' ? 'block' : 'none';
+      document.getElementById('paySectionCard').style.display = tab === 'card' ? 'block' : 'none';
+      document.getElementById('paySectionNet').style.display = tab === 'net' ? 'block' : 'none';
+      document.getElementById('paySectionCOD').style.display = tab === 'cod' ? 'block' : 'none';
+    }
+
+    function placeOrder() {
+      // Transition to Confirmation step
+      document.querySelectorAll('.checkout-step-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('panelConfirmation').classList.add('active');
+
+      // Update tracker
+      document.querySelectorAll('.step-node').forEach(n => {
+        n.classList.remove('active');
+        n.classList.add('completed');
+      });
+      document.getElementById('stepNode4').classList.add('active');
+
+      // Generate random order reference
+      const orderId = 'AAL-' + new Date().getFullYear() + '-' + Math.floor(10000 + Math.random() * 90000);
+      document.getElementById('confirmOrderId').textContent = orderId;
+
+      const city = document.getElementById('addrCity').value;
+      const state = document.getElementById('addrState').value;
+      const pin = document.getElementById('addrPin').value;
+      document.getElementById('confirmAddrText').textContent = `${city}, ${state} - ${pin}`;
+
+      // Save order to history
+      const savedOrders = JSON.parse(localStorage.getItem('aalaya_orders') || '[]');
+      savedOrders.unshift({
+        id: orderId,
+        date: new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' }),
+        items: [...AalayaStore.cart],
+        total: AalayaStore.getCartSubtotal(),
+        status: 'Confirmed & Artisan Assembling'
+      });
+      localStorage.setItem('aalaya_orders', JSON.stringify(savedOrders));
+
+      // Reset cart
+      AalayaStore.cart = [];
+      AalayaStore.saveCart();
+    }
+
+    document.addEventListener('DOMContentLoaded', renderCheckoutSummary);
+  </script>
+</body>
+</html>
