@@ -232,11 +232,11 @@ const AALAYA_PRODUCTS = [
     isNew: true,
     isBestseller: true,
     isTrending: true,
-    images: [
-      "/assets/images/2_c67bd68a-943e-4c56-890b-3fd509130adf.webp",
-      "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=1000&q=85",
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1000&q=85"
-    ],
+      images: [
+        "./assets/images/2_c67bd68a-943e-4c56-890b-3fd509130adf.webp",
+        "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=1000&q=85",
+        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1000&q=85"
+      ],
     description: "An ethereal contemporary dream designed for dancing under star-lit skies. Laminated rose gold organza catches every glint of stage light, complemented by a plunging sweetheart neck blouse with beaded tassels.",
     details: [
       "Features feather-light structured construction for effortless movement",
