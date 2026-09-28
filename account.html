@@ -82,6 +82,56 @@ body > .site-header {
         grid-template-columns: 1fr;
       }
     }
+
+    /* ============ LUXURY FORM CONTROLS ============ */
+.form-group-custom {
+  margin-bottom: 1.5rem;
+}
+
+.form-label-custom {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--aalaya-muted);
+  margin-bottom: 8px;
+}
+
+.form-input-custom {
+  width: 100%;
+  padding: 14px 16px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--aalaya-charcoal);
+  background-color: var(--aalaya-white);
+  border: 1px solid rgba(23, 23, 23, 0.15);
+  outline: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  border-radius: 0; /* luxury brands typically avoid rounded inputs */
+}
+
+.form-input-custom:focus {
+  border-color: var(--aalaya-gold);
+  box-shadow: 0 0 0 3px rgba(184, 148, 85, 0.12);
+}
+
+.form-input-custom::placeholder {
+  color: #b5b5b5;
+  font-style: italic;
+}
+
+/* Ensure Bootstrap grid gutters inside the account panel feel right */
+.account-tab-panel .row {
+  margin-left: -0.75rem;
+  margin-right: -0.75rem;
+}
+
+.account-tab-panel .row > [class*="col-"] {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
   </style>
 </head>
 <body>
